@@ -8,6 +8,7 @@ const options = {
     Providers.Spotify({
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+      scope: "user-top-read",
     }),
   ],
   callbacks: {
@@ -19,7 +20,6 @@ const options = {
     jwt: async (token, user, account) => {
       if (account) {
         token.accessToken = account.accessToken;
-        token.refreshToken = account.refreshToken;
       }
 
       return Promise.resolve(token);
@@ -27,7 +27,6 @@ const options = {
 
     session: async (session, token) => {
       session.accessToken = token.accessToken;
-      session.refreshToken = token.refreshToken;
       return Promise.resolve(session);
     },
   },

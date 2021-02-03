@@ -1,18 +1,21 @@
 import Head from "next/head";
 import { getSession, signIn, signOut, useSession } from "next-auth/client";
 import styles from "../styles/Home.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-
+import Card from "../components/Card";
 export default function Home() {
   const [session, loading] = useSession();
-  const [topSongs, setTopSongs] = useState({});
+  const [topSongs, setTopSongs] = useState([]);
   const [timeRange, setTimeRange] = useState("short_term");
   function signInSpotify() {
     signIn("spotify");
   }
-  if (session) {
-    fetch("https://api.spotify.com/v1/me/top/tracks");
+  useEffect(() => {
+    Card(setTopSongs, "short_term");
+  }, []);
+  function getSongs(time_range) {
+    console.log("clicked");
   }
   return (
     <>
@@ -48,6 +51,39 @@ export default function Home() {
               </h2>
             </motion.div>
           </>
+          <a
+            href="https://aymericfoyer.com"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <motion.svg
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.7, delay: 0.2 },
+              }}
+              whileHover={{
+                fill: ["#000000", "#C70039", "#01579B", "#000000"],
+                transition: {
+                  loop: Infinity,
+                  flip: 0,
+                  ease: "linear",
+                  duration: 3,
+                },
+              }}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 259.57 158.05"
+              className={styles.aflogo}
+            >
+              <g id="Layer_2" data-name="Layer 2">
+                <g id="Layer_1-2" data-name="Layer 1">
+                  <polyline points="104.42 1.11 259.57 0 225.92 29.63 136.84 29.63 136.84 69.13 179.84 69.13 157.06 98.77 137.1 98.77 137.1 157.19 104.42 157.19" />
+                  <path d="M0,158.05H26.58l12.08-14.68,65.77-23.13V1.11ZM93.08,98.94c-6.59,2.35-36.51,14.37-44.34,17-1.21.41-1.17-.47-.73-1.15L93.92,43c-.15.22.51.46.44,1V97.11A1.94,1.94,0,0,1,93.08,98.94Z" />
+                  <polygon points="187.61 69.13 164.82 98.77 194.34 98.77 216.6 69.13 187.61 69.13" />
+                </g>
+              </g>
+            </motion.svg>
+          </a>
         </div>
       )}
       {/* LOGGED IN */}
@@ -63,41 +99,12 @@ export default function Home() {
           >
             Log Out
           </button>
+          {topSongs.length > 0 &&
+            topSongs.map((song, index) => {
+              return <div key={"track" + index}>{song.trackname}</div>;
+            })}
         </>
       )}
-      <a
-        href="https://aymericfoyer.com"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        <motion.svg
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: 1,
-            transition: { duration: 0.7, delay: 0.2 },
-          }}
-          whileHover={{
-            fill: ["#000000", "#C70039", "#01579B", "#000000"],
-            transition: {
-              loop: Infinity,
-              flip: 0,
-              ease: "linear",
-              duration: 3,
-            },
-          }}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 259.57 158.05"
-          className={styles.aflogo}
-        >
-          <g id="Layer_2" data-name="Layer 2">
-            <g id="Layer_1-2" data-name="Layer 1">
-              <polyline points="104.42 1.11 259.57 0 225.92 29.63 136.84 29.63 136.84 69.13 179.84 69.13 157.06 98.77 137.1 98.77 137.1 157.19 104.42 157.19" />
-              <path d="M0,158.05H26.58l12.08-14.68,65.77-23.13V1.11ZM93.08,98.94c-6.59,2.35-36.51,14.37-44.34,17-1.21.41-1.17-.47-.73-1.15L93.92,43c-.15.22.51.46.44,1V97.11A1.94,1.94,0,0,1,93.08,98.94Z" />
-              <polygon points="187.61 69.13 164.82 98.77 194.34 98.77 216.6 69.13 187.61 69.13" />
-            </g>
-          </g>
-        </motion.svg>
-      </a>
     </>
   );
 }

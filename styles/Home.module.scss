@@ -6,7 +6,7 @@
     url(./helveticaneue/HelveticaNeue.ttf) format("ttf");
 }
 .signInTitle {
-  font-family: "HelveticaNeue";
+  font-family: "HelveticaNeue", Helvetica;
   font-weight: Bold;
   margin-top: 7%;
   padding: 0 10%;
@@ -97,7 +97,14 @@
 }
 
 .center {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
   cursor: pointer;
+
   background-color: white;
 
   position: relative;

@@ -4,6 +4,8 @@ import styles from "../styles/Home.module.scss";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Card from "../components/Card";
+import { setTextRange } from "typescript";
+import Track from "./../components/Track";
 export default function Home() {
   const [session, loading] = useSession();
   const [topSongs, setTopSongs] = useState([]);
@@ -12,8 +14,8 @@ export default function Home() {
     signIn("spotify");
   }
   useEffect(() => {
-    Card(setTopSongs, "short_term");
-  }, []);
+    Card(setTopSongs, timeRange);
+  }, [timeRange]);
   function getSongs(time_range) {
     console.log("clicked");
   }
@@ -27,6 +29,7 @@ export default function Home() {
         <div className={styles.container}>
           <>
             <motion.div
+              whileTap={{ scale: 0.98 }}
               onClick={signInSpotify}
               className={styles.center}
               initial={{ opacity: 0, y: 50 }}
@@ -89,7 +92,7 @@ export default function Home() {
       {/* LOGGED IN */}
 
       {session && (
-        <>
+        <div className="signed-in" style={{ backgroundColor: "lightgray" }}>
           <div>Hello {session.user.name}</div>
           <button
             className="btn btn-primary"
@@ -99,11 +102,38 @@ export default function Home() {
           >
             Log Out
           </button>
-          {topSongs.length > 0 &&
-            topSongs.map((song, index) => {
-              return <div key={"track" + index}>{song.trackname}</div>;
-            })}
-        </>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              setTimeRange("short_term");
+            }}
+          >
+            short Range
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              setTimeRange("medium_term");
+            }}
+          >
+            Med Range
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              setTimeRange("long_term");
+            }}
+          >
+            Long Range
+          </button>
+
+          {topSongs.length > 0 && (
+            <div className="pantone-card">
+              <div className="title-card">PANTONIFY&copy;</div>
+              <Track array={topSongs} />
+            </div>
+          )}
+        </div>
       )}
     </>
   );

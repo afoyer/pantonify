@@ -10,6 +10,7 @@
   "dependencies": {
     "fast-average-color": "^6.3.0",
     "framer-motion": "^3.2.2-rc.1",
+    "nearest-pantone": "^1.0.1",
     "next": "10.0.5",
     "next-auth": "^3.2.0-canary.43",
     "react": "17.0.1",

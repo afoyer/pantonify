@@ -3,7 +3,6 @@ import Providers from "next-auth/providers";
 import { signIn } from "next-auth/client";
 
 const options = {
-  // debug: true,
   providers: [
     Providers.Spotify({
       clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -12,12 +11,20 @@ const options = {
     }),
   ],
   callbacks: {
-    // signIn: async (user, account) => {
-    //   user.accessToken = account.accessToken;
-    //   user.refreshToken = account.refreshToken;
-    //   return Promise.resolve(user);
-    // },
     jwt: async (token, user, account) => {
+      // if (!account) {
+      //   token.accessToken = fetch("https://accounts.spotify.com/api/token", {
+      //     method: "POST",
+      //     body: JSON.stringify({
+      //       grant_type: "refresh_token",
+      //       refresh_token: token.refreshToken,
+      //     }),
+      //     headers: {
+      //       Authorization: `Basic ${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`,
+      //     },
+      //   });
+      //   console.log("new token:" + token.accessToken);
+      // }
       if (account) {
         token.accessToken = account.accessToken;
       }

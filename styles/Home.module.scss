@@ -1,12 +1,8 @@
 @import "./breakpoints.scss";
 @import "./signedIn.scss";
-@font-face {
-  font-family: "HelveticaNeue";
-  src: local("HelveticaNeue"),
-    url(./helveticaneue/HelveticaNeue.ttf) format("ttf");
-}
+
 .signInTitle {
-  font-family: "HelveticaNeue", Helvetica;
+  font-family: "HelveticaNeue", Helvetica, sans-serif;
   font-weight: Bold;
   margin-top: 7%;
   padding: 0 10%;

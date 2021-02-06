@@ -1,36 +1,60 @@
-@font-face {
-  font-family: "HelveticaNeue";
-  src: local("HelveticaNeue"),
-    url(./helveticaneue/HelveticaNeue.ttf) format("ttf");
+@mixin flexwrap($direction, $wrap: false) {
+  display: flex;
+  flex-direction: $direction;
+  @if $wrap {
+    flex-wrap: wrap;
+  }
 }
+@import "./styles/breakpoints.scss";
 .pantone-card {
-  border-radius: 40px;
+  @include flexwrap(column, $wrap: true);
+  justify-content: flex-start;
+  border-radius: 3vh;
   max-width: 33vh;
-  margin: auto;
-  height: 75%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  height: 90%;
   background-color: white;
-  filter: drop-shadow(0px 10px 11px rgba(0, 0, 0, 0.25));
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  @include media("<=phone") {
+    max-width: 35vh;
+    height: 90%;
+  }
+}
+.signed-in {
+  height: 100%;
+}
+.card-display {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navigation {
+  position: absolute;
+  z-index: 5;
+  @include media("<=phone") {
+    position: relative;
+    height: 100%;
+  }
 }
 .title-card {
+  width: 100%;
+  text-align: center;
   font-family: "HelveticaNeue", Helvetica;
   text-align: center;
   font-weight: 800;
-  margin: 10px;
+  height: 3%;
+  margin: 5% 0;
   font-size: 3vh;
 }
 .signed-in {
   height: 100%;
 }
 .song {
-  height: 23%;
+  height: 22%;
+  width: 100%;
   .song-color {
-    height: 60%;
+    overflow: hidden;
+    height: 70%;
     img {
       opacity: 0.6;
       position: relative;
@@ -52,12 +76,10 @@
   }
 }
 .track-info {
-  height: 40%;
+  height: 30%;
   font-family: "HelveticaNeue", Helvetica;
-  display: flex;
-  //   flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
+  @include flexwrap(row, $wrap: true);
+  justify-content: flex-start;
   .song-name-div {
     flex: 0 1 40%;
     width: 45%;
@@ -65,54 +87,94 @@
     padding: 0;
     display: flex;
     justify-content: left;
-
-    margin-right: 10px;
-    .song-name {
-      //   height: 100%;
-      font-size: 1.7vh;
-      font-weight: 300;
-      margin: auto 0;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      max-height: 100%;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    align-content: flex-start;
+    margin-right: 1%;
   }
   .flex-track {
     display: flex;
     justify-content: center;
-    width: 55%;
-    flex: 1 0 55%;
+    width: 50%;
+    flex: 0 1 55%;
   }
+
   .bold-title {
+    font-family: "HelveticaNeue", Helvetica;
     // height: 98%;
     width: 100%;
-    margin: 1% 2%;
+    margin: 2% 2%;
     border: 0;
     display: flex;
     flex-wrap: wrap;
-    align-content: center;
-    .left-info {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      max-height: 40px; /* Fallback for non-webkit */
-      font-size: 2.2vh;
-      flex-basis: 100%;
-      margin: auto 10px;
-      line-height: 2vh;
-    }
-    .left-info-sub {
-      font-weight: 600;
-      font-size: 2.2vh;
-      flex-basis: 100%;
-      margin: auto 10px;
-      line-height: 2vh;
-    }
+    align-content: flex-start;
   }
+}
+.bottom {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  max-height: 4%;
+  width: 100%;
+
+  .punchhole {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 5%;
+    height: 100%;
+    background-color: #dddddd;
+    border-radius: 50%;
+    width: 12%;
+    height: 100%;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}
+.logo {
+  width: 80%;
+  opacity: 0.5;
+}
+@mixin lineclamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Track Information
+.song-name {
+  font-family: "HelveticaNeue", Helvetica;
+  font-size: 1.8vh;
+  font-weight: 300;
+  margin: 2% 0;
+  flex-grow: 1;
+  max-width: 40%;
+  @include lineclamp(3);
+  @include media("<=phone") {
+    margin-right: 1%;
+  }
+}
+.left-info {
+  @include lineclamp(2);
+  font-size: 2vh;
+  flex-basis: 100%;
+  margin: auto 0 auto 6%;
+  line-height: 2vh;
+  @include media("<=phone") {
+    margin-right: 1%;
+  }
+  @include media("<=400px") {
+    padding-top: 2px;
+    margin-right: 1%;
+  }
+}
+.left-info-sub {
+  margin: auto 0 auto 6%;
+  font-weight: 600;
+  font-size: 1.8vh;
+  flex-basis: 100%;
+  line-height: 2vh;
 }

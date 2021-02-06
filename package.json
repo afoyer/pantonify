@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "downloadjs": "^1.4.7",
     "fast-average-color": "^6.3.0",
     "framer-motion": "^3.2.2-rc.1",
     "nearest-pantone": "^1.0.1",

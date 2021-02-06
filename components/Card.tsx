@@ -22,7 +22,8 @@ export default async function Card(topSongSetter: Function, timeRange: String) {
             const pantone = pant.getClosestColor(color.hex);
             return {
               trackname: track.name,
-              image: track.album.images[1].url,
+              album: track.album.name,
+              image: track.album.images[0].url,
               artist: track.artists[0].name,
               imagecolor: pantone.hex,
               pantone: pantone.pantone,

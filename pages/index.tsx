@@ -110,7 +110,7 @@ export default function Home() {
                 setTimeRange("short_term");
               }}
             >
-              short Range
+              4 Weeks
             </button>
             <button
               className="btn btn-primary"
@@ -118,7 +118,7 @@ export default function Home() {
                 setTimeRange("medium_term");
               }}
             >
-              Med Range
+              6 Months
             </button>
             <button
               className="btn btn-primary"
@@ -126,7 +126,7 @@ export default function Home() {
                 setTimeRange("long_term");
               }}
             >
-              Long Range
+              All Time
             </button>
           </nav>
           <div className="signed-in" style={{ backgroundColor: "#dddddd" }}>

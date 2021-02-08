@@ -10,7 +10,7 @@
   @include flexwrap(column, $wrap: true);
   justify-content: flex-start;
   border-radius: 3vh;
-  max-width: 33vh;
+  width: 32vh;
   height: 90%;
   background-color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -96,6 +96,7 @@
 }
 .track-info {
   height: 30%;
+  width: 100%;
   font-family: "HelveticaNeue", Helvetica;
   @include flexwrap(row, $wrap: true);
   justify-content: flex-start;
@@ -111,20 +112,18 @@
   }
   .flex-track {
     display: flex;
-    justify-content: center;
-    width: 50%;
-    flex: 0 1 55%;
+    flex: 0 1 50%;
+    max-width: 50%;
   }
 
   .bold-title {
-    font-family: "HelveticaNeue", Helvetica;
-    // height: 98%;
-    width: 100%;
+    font-family: "HelveticaNeueMed", Helvetica;
     margin: 2% 2%;
+    width: 96%;
     border: 0;
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-start;
+    align-content: center;
   }
 }
 .bottom {
@@ -158,29 +157,31 @@
   display: -webkit-box;
   -webkit-line-clamp: $lines;
   -webkit-box-orient: vertical;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 // Track Information
 .song-name {
-  font-family: "HelveticaNeueLt", Helvetica;
+  font-family: "HelveticaNeue", Helvetica;
   font-size: 1.8vh;
-  margin: 2% 0;
+  font-weight: 300;
+  margin: 2% 1%;
   flex-grow: 1;
-  max-width: 40%;
-  @include lineclamp(3);
+  max-width: 48%;
+  @include lineclamp(2);
   @include media("<=phone") {
     margin-right: 1%;
   }
 }
 .left-info {
-  @include lineclamp(2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 2vh;
-  flex-basis: 100%;
-  margin: auto 0 auto 6%;
+  margin: auto 0 auto 3px;
   line-height: 2vh;
+  flex: 1 0 75%;
   @include media("<=phone") {
     margin-right: 1%;
   }
@@ -190,9 +191,8 @@
   }
 }
 .left-info-sub {
-  margin: auto 0 auto 6%;
+  margin: auto 0 auto 3px;
   font-weight: 600;
   font-size: 1.8vh;
-  flex-basis: 100%;
   line-height: 2vh;
 }

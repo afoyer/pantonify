@@ -31,6 +31,7 @@
   justify-content: center;
   align-items: center;
 }
+//Nav Buttons
 .navigation {
   div {
     text-align: center;
@@ -60,6 +61,7 @@
     margin: 20px auto;
   }
 }
+//Top Title
 .title-card {
   width: 100%;
   text-align: center;
@@ -69,6 +71,7 @@
   margin: 5% 0;
   font-size: 3vh;
 }
+// Swatch and Album Art
 .song {
   height: 22%;
   width: 100%;
@@ -127,6 +130,7 @@
     align-content: center;
   }
 }
+// Punchole/Logo Area
 .bottom {
   position: relative;
   display: flex;
@@ -162,7 +166,7 @@
   text-overflow: ellipsis;
 }
 
-// Track Information
+// Track Information Text
 .song-name {
   font-family: "HelveticaNeue", Helvetica;
   font-size: 1.8vh;
@@ -193,4 +197,18 @@
   font-weight: 600;
   font-size: 1.8vh;
   line-height: 2vh;
+}
+.timed-out {
+  position: fixed;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // margin: auto;
+  text-align: center;
+  width: 80%;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  // height: 100px;
 }

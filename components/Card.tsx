@@ -2,7 +2,11 @@ import { motion } from "framer-motion";
 import { getSession } from "next-auth/client";
 import FastAverageColor from "fast-average-color";
 
-export default async function Card(topSongSetter: Function, timeRange: String) {
+export default async function Card(
+  topSongSetter: Function,
+  timeRange: String,
+  checkSession: Function
+) {
   const session = await getSession();
   if (session) {
     const fac = new FastAverageColor();
@@ -11,26 +15,30 @@ export default async function Card(topSongSetter: Function, timeRange: String) {
       { headers: { Authorization: `Bearer ${session.accessToken}` } }
     );
     const jsonResponse = await response.json();
-    const trackArray: Array<Object> = await Promise.all(
-      jsonResponse.items.map((track) => {
-        return fac
-          .getColorAsync(track.album.images[1].url, {
-            algorithm: "sqrt",
-          })
-          .then((color) => {
-            const pant = require("nearest-pantone");
-            const pantone = pant.getClosestColor(color.hex);
-            return {
-              trackname: track.name,
-              album: track.album.name,
-              image: track.album.images[0].url,
-              artist: track.artists[0].name,
-              imagecolor: pantone.hex,
-              pantone: pantone.pantone,
-            };
-          });
-      })
-    );
-    topSongSetter(trackArray);
+    if (!jsonResponse.items) {
+      checkSession(false);
+    } else {
+      const trackArray: Array<Object> = await Promise.all(
+        jsonResponse.items.map((track) => {
+          return fac
+            .getColorAsync(track.album.images[1].url, {
+              algorithm: "sqrt",
+            })
+            .then((color) => {
+              const pant = require("nearest-pantone");
+              const pantone = pant.getClosestColor(color.hex);
+              return {
+                trackname: track.name,
+                album: track.album.name,
+                image: track.album.images[0].url,
+                artist: track.artists[0].name,
+                imagecolor: pantone.hex,
+                pantone: pantone.pantone,
+              };
+            });
+        })
+      );
+      topSongSetter(trackArray);
+    }
   }
 }

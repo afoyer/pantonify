@@ -5,12 +5,13 @@ import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Card from "../components/Card";
 import Track from "./../components/Track";
+import TimedOut from "../components/TimedOut";
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const [session, loading] = useSession();
   const [topSongs, setTopSongs] = useState([]);
-
+  const [reLog, checkSession] = useState(true);
   const [firstTime, setFirstTime] = useState(false);
   const [timeRange, setTimeRange] = useState("short_term");
 
@@ -22,12 +23,13 @@ export default function Home() {
 
   useEffect(() => {
     setIsLoaded(false);
-    Card(setTopSongs, timeRange);
+    //Get Top Songs from specific time Range
+    Card(setTopSongs, timeRange, checkSession);
     setIsLoaded(true);
-    if (firstTime) {
+    //Scroll to view if not the first card
+    if (firstTime && reLog) {
       ref.current.scrollIntoView();
-    }
-    setFirstTime(true);
+    } else setFirstTime(true);
   }, [timeRange]);
   return (
     <>
@@ -146,8 +148,9 @@ export default function Home() {
               All Time
             </button>
           </nav>
+          {/* CARD */}
           <div className="signed-in" style={{ backgroundColor: "#dddddd" }}>
-            {isLoaded && (
+            {isLoaded && reLog && (
               <div className="card-display">
                 <AnimatePresence exitBeforeEnter>
                   <motion.div
@@ -214,6 +217,7 @@ export default function Home() {
               </div>
             )}
           </div>
+          {!reLog && <TimedOut />}
         </>
       )}
     </>

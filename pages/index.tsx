@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { signIn, signOut, useSession } from "next-auth/client";
 import styles from "../styles/Home.module.scss";
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Card from "../components/Card";
 import Track from "./../components/Track";
@@ -10,7 +10,11 @@ export default function Home() {
 
   const [session, loading] = useSession();
   const [topSongs, setTopSongs] = useState([]);
+
+  const [firstTime, setFirstTime] = useState(false);
   const [timeRange, setTimeRange] = useState("short_term");
+
+  const ref = useRef(null);
 
   function signInSpotify() {
     signIn("spotify");
@@ -20,6 +24,10 @@ export default function Home() {
     setIsLoaded(false);
     Card(setTopSongs, timeRange);
     setIsLoaded(true);
+    if (firstTime) {
+      ref.current.scrollIntoView();
+    }
+    setFirstTime(true);
   }, [timeRange]);
   return (
     <>
@@ -150,16 +158,17 @@ export default function Home() {
                       opacity: 1,
                       y: 0,
                       rotate: 0,
-                      transition: { duration: 1, delay: 0.5 },
+                      transition: { duration: 0.5, delay: 0.2 },
                     }}
                     exit={{
                       opacity: 0,
                       y: 20,
                       rotate: -5,
-                      transition: { duration: 1 },
+                      transition: { duration: 0.5 },
                     }}
                     className="pantone-card"
                     id="PANTONECARD"
+                    ref={ref}
                   >
                     <div className="title-card">PANTONIFY&copy;</div>
                     <Track array={topSongs} />

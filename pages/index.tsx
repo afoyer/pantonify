@@ -109,6 +109,7 @@ export default function Home() {
             username={session.user.name}
             signOut={signOut}
             setTimeRange={setTimeRange}
+            timeRange={timeRange}
           />
           {/* CARD */}
           <div className="signed-in" style={{ backgroundColor: "#dddddd" }}>
@@ -123,13 +124,13 @@ export default function Home() {
                       opacity: 1,
                       y: 0,
                       rotate: 0,
-                      transition: { duration: 0.5, delay: 0.2 },
+                      transition: { duration: 0.2, delay: 0 },
                     }}
                     exit={{
                       opacity: 0,
                       y: 20,
                       rotate: -5,
-                      transition: { duration: 0.5 },
+                      transition: { duration: 0.2 },
                     }}
                     className="pantone-card"
                     id="PANTONECARD"

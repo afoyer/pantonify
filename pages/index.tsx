@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Card from "../components/Card";
 import Track from "./../components/Track";
 import TimedOut from "../components/TimedOut";
+import Navigation from "../components/Navigation";
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -104,50 +105,11 @@ export default function Home() {
 
       {session && (
         <>
-          <nav className="navigation">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                transition: { duration: 1, delay: 0.2 },
-              }}
-            >
-              Hello {session.user.name}
-            </motion.div>
-            <button
-              className="btn btn-primary"
-              onClick={() => {
-                signOut();
-              }}
-            >
-              Log Out
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => {
-                setTimeRange("short_term");
-              }}
-            >
-              4 Weeks
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => {
-                setTimeRange("medium_term");
-              }}
-            >
-              6 Months
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => {
-                setTimeRange("long_term");
-              }}
-            >
-              All Time
-            </button>
-          </nav>
+          <Navigation
+            username={session.user.name}
+            signOut={signOut}
+            setTimeRange={setTimeRange}
+          />
           {/* CARD */}
           <div className="signed-in" style={{ backgroundColor: "#dddddd" }}>
             {isLoaded && reLog && (

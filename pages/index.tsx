@@ -177,7 +177,7 @@ export default function Home() {
                       opacity: 1,
                       y: 0,
                       rotate: 0,
-                      transition: { duration: 0.5, delay: 0.5 },
+                      transition: { duration: 0.5, delay: 0.1 },
                     }}
                     exit={{
                       opacity: 0,

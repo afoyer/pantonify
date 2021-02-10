@@ -14,18 +14,27 @@ export default function Home() {
   const [topSongs, setTopSongs] = useState([]);
   const [reLog, checkSession] = useState(true);
   const [firstTime, setFirstTime] = useState(false);
+  const [pantone, setPantone] = useState([
+    "#dddddd",
+    "#dddddd",
+    "#dddddd",
+    "#dddddd",
+  ]);
   const [timeRange, setTimeRange] = useState("short_term");
-
+  const hex2rgba = (hex, alpha = 1) => {
+    const [r, g, b] = hex.match(/\w\w/g).map((x) => parseInt(x, 16));
+    return `rgba(${r},${g},${b},${alpha})`;
+  };
   const ref = useRef(null);
 
   function signInSpotify() {
-    signIn("spotify");
+    signIn("spotify", null, { prompt: "login" });
   }
 
   useEffect(() => {
     setIsLoaded(false);
     //Get Top Songs from specific time Range
-    Card(setTopSongs, timeRange, checkSession);
+    Card(setTopSongs, timeRange, checkSession, setPantone);
     setIsLoaded(true);
     //Scroll to view if not the first card
     if (firstTime && reLog) {
@@ -110,10 +119,54 @@ export default function Home() {
             signOut={signOut}
             setTimeRange={setTimeRange}
             timeRange={timeRange}
+            color={hex2rgba(pantone[0], 0.65)}
           />
           {/* CARD */}
-          <div className="signed-in" style={{ backgroundColor: "#dddddd" }}>
-            {isLoaded && reLog && (
+
+          {isLoaded && reLog && (
+            <motion.div
+              className="signed-in"
+              // style={{
+              //   background: `linear-gradient(217deg, rgba(255,0,0,0.8), rgba(255,0,0,0) 70.71%),linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%)`,
+              // }}
+              initial={{
+                background: `linear-gradient(180deg, ${hex2rgba(
+                  pantone[0],
+                  0.8
+                )}, ${hex2rgba(
+                  pantone[1],
+                  0
+                )} 70.71%),linear-gradient(120deg, ${hex2rgba(
+                  pantone[1],
+                  0.8
+                )}, ${hex2rgba(
+                  pantone[2],
+                  0
+                )} 70.71%),linear-gradient(336deg, ${hex2rgba(
+                  pantone[2],
+                  0.8
+                )}, ${hex2rgba(pantone[3], 0)} 70.71%)`,
+              }}
+              animate={{
+                background: `linear-gradient(180deg, ${hex2rgba(
+                  pantone[0],
+                  0.8
+                )}, ${hex2rgba(
+                  pantone[1],
+                  0
+                )} 70.71%),linear-gradient(120deg, ${hex2rgba(
+                  pantone[1],
+                  0.8
+                )}, ${hex2rgba(
+                  pantone[2],
+                  0
+                )} 70.71%),linear-gradient(336deg, ${hex2rgba(
+                  pantone[2],
+                  0.8
+                )}, ${hex2rgba(pantone[3], 0)} 70.71%)`,
+                transition: { duration: 0.5 },
+              }}
+            >
               <div className="card-display">
                 <AnimatePresence exitBeforeEnter>
                   <motion.div
@@ -124,13 +177,13 @@ export default function Home() {
                       opacity: 1,
                       y: 0,
                       rotate: 0,
-                      transition: { duration: 0.2, delay: 0 },
+                      transition: { duration: 0.5, delay: 0.5 },
                     }}
                     exit={{
                       opacity: 0,
                       y: 20,
                       rotate: -5,
-                      transition: { duration: 0.2 },
+                      transition: { duration: 0.5 },
                     }}
                     className="pantone-card"
                     id="PANTONECARD"
@@ -139,6 +192,13 @@ export default function Home() {
                     <div className="title-card">PANTONIFY&copy;</div>
                     <Track array={topSongs} />
                     <footer className="bottom">
+                      <h1>
+                        Made for{" "}
+                        {session.user.name.substr(
+                          0,
+                          session.user.name.indexOf(" ")
+                        )}
+                      </h1>
                       <a
                         className="punchhole"
                         href="https://aymericfoyer.com/"
@@ -178,9 +238,10 @@ export default function Home() {
                   </motion.div>
                 </AnimatePresence>
               </div>
-            )}
-          </div>
-          {!reLog && <TimedOut />}
+            </motion.div>
+          )}
+
+          {!reLog && <TimedOut signOut={signOut} />}
         </>
       )}
     </>

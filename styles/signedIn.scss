@@ -11,13 +11,13 @@
   justify-content: flex-start;
   border-radius: 3vh;
   width: 32vh;
-  height: 90%;
+  height: 93%;
   margin: auto;
   background-color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   @include media("<=phone") {
-    max-width: 35vh;
-    height: 92%;
+    max-width: 32vh;
+    height: 93%;
   }
 }
 .signed-in {
@@ -154,7 +154,7 @@
   }
 }
 .track-info {
-  height: 30%;
+  height: 25%;
   width: 100%;
   font-family: "HelveticaNeue", Helvetica;
   @include flexwrap(row, $wrap: true);
@@ -171,13 +171,13 @@
   }
   .flex-track {
     display: flex;
-    flex: 0 1 50%;
+    flex: 1 1 50%;
     max-width: 50%;
   }
 
   .bold-title {
     font-family: "HelveticaNeueMed", Helvetica;
-    margin: 2% 0 2% 4%;
+    margin: 0 0 0 4%;
     width: 96%;
     border: 0;
     display: flex;
@@ -229,25 +229,23 @@
 
 // Track Information Text
 .song-name {
-  font-family: "HelveticaNeue", Helvetica;
-  font-size: 1.8vh;
+  font-family: "HelveticaNeueMed", Helvetica;
+  font-size: 1.3vh;
   font-weight: 300;
-  line-height: 2.3vh;
-  margin: 2% 1%;
   flex-grow: 1;
-  max-width: 48%;
+  max-width: 44%;
+  margin-top: 3%;
+  margin-left: 2%;
+  flex-basis: 45%;
   @include lineclamp(2);
-  @include media("<=phone") {
-    margin-right: 1%;
-  }
 }
 .left-info {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 1.5vh;
+  font-size: 1.3vh;
   margin: auto 0 auto 3px;
-  line-height: 2vh;
+  line-height: 1.5vh;
   flex: 1 0 75%;
   @include media("<=phone") {
     margin-right: 1%;
@@ -256,8 +254,8 @@
 .left-info-sub {
   margin: auto 0 auto 3px;
   font-weight: 600;
-  font-size: 1.3vh;
-  line-height: 2vh;
+  font-size: 1.2vh;
+  line-height: 1.5vh;
 }
 .timed-out {
   position: fixed;

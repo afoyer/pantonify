@@ -28,7 +28,7 @@ export default function Home() {
   const ref = useRef(null);
 
   function signInSpotify() {
-    signIn("spotify", null, { prompt: "login" });
+    signIn("spotify");
   }
 
   useEffect(() => {

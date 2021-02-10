@@ -19,7 +19,7 @@ export default async function Card(
     if (!jsonResponse.items) {
       checkSession(false);
     } else {
-      const trackArray: Array<Object> = await Promise.all(
+      const trackArray: Array<any> = await Promise.all(
         jsonResponse.items.map((track) => {
           return fac
             .getColorAsync(track.album.images[1].url, {
@@ -41,6 +41,7 @@ export default async function Card(
       );
       setPantone(
         trackArray.map((track) => {
+          console.log(track);
           return track.imagecolor;
         })
       );

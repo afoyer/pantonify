@@ -52,16 +52,16 @@
   }
   div {
     text-align: center;
-    font-family: "HelveticaNeueMed", Helvetica, sans-serif;
+    font-family: "HelveticaNeueBd", Helvetica, sans-serif;
   }
   position: absolute;
   z-index: 5;
   display: flex;
-  top: 5%;
+  top: 50%;
+  transform: translateY(-50%);
   justify-content: center;
   flex-direction: column;
-  left: 5%;
-  // padding: 10px;
+  left: 20%;
   border-radius: 10px;
   backdrop-filter: blur(10px);
   @include media("<=1000px") {
@@ -70,23 +70,17 @@
     flex-wrap: wrap;
     top: unset;
     transform: unset;
+    transform: unset;
     position: relative;
     padding-left: 0%;
     margin: auto;
     width: 100%;
     border-radius: 0px;
-    // height: 50%;
     padding: 0px;
-    // padding-top: 40%;
-    :last-child {
-      border-radius: 0 0 10px 0;
-    }
-    :nth-child(2) {
-      border-radius: 0 0 0 10px;
-    }
   }
   .hey {
     margin: auto;
+    font-size: 1.2rem;
     // padding-right: 10px;
     padding: 10px;
     @include media("<=1000px") {
@@ -112,7 +106,7 @@
       padding: 10px;
     }
     // border-radius: 10px;
-    font-family: "HelveticaNeuewoff", Helvetica, sans-serif;
+    font-family: "HelveticaNeueMed", Helvetica, sans-serif;
     font-weight: 700;
   }
 }

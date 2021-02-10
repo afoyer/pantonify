@@ -13,7 +13,7 @@ export default function Navigation({
       className="navigation"
       initial={false}
       animate={{
-        backgroundColor: color,
+        backgroundColor: "rgba(27, 181, 82, 0.8)",
         transition: {
           staggerChildren: 0.5,
         },
@@ -28,18 +28,22 @@ export default function Navigation({
         }}
         className="hey"
       >
-        Hey {username.substr(0, username.indexOf(" "))}
+        PANTONIFY
       </motion.div>
       <motion.button
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 0.5 } }}
+        animate={{
+          opacity: 1,
+          backgroundColor: "#e57373",
+          transition: { duration: 0.5 },
+        }}
         whileHover={{ backgroundColor: "#b71c1c", color: "#FFFFFF" }}
         className="btn btn-primary"
         onClick={() => {
           signOut({ redirect: false });
         }}
       >
-        Log Out
+        LOG OUT
       </motion.button>
       <motion.button
         initial={{ opacity: 0 }}
@@ -62,7 +66,7 @@ export default function Navigation({
           setTimeRange("short_term");
         }}
       >
-        1 Month
+        1 MONTH
       </motion.button>
       <motion.button
         initial={{ opacity: 0 }}
@@ -85,7 +89,7 @@ export default function Navigation({
           setTimeRange("medium_term");
         }}
       >
-        6 Months
+        6 MONTHS
       </motion.button>
       <motion.button
         initial={{ opacity: 0 }}
@@ -108,7 +112,7 @@ export default function Navigation({
           setTimeRange("long_term");
         }}
       >
-        All Time
+        ALL TIME
       </motion.button>
     </motion.nav>
   );

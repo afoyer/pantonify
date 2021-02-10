@@ -143,19 +143,19 @@ export default function Home() {
               animate={{
                 background: `linear-gradient(180deg, ${hex2rgba(
                   pantone[0],
-                  0.5
+                  0.8
                 )}, ${hex2rgba(
                   pantone[1],
                   0
                 )} 70.71%),linear-gradient(120deg, ${hex2rgba(
                   pantone[1],
-                  0.5
+                  0.8
                 )}, ${hex2rgba(
                   pantone[2],
                   0
                 )} 70.71%),linear-gradient(336deg, ${hex2rgba(
                   pantone[2],
-                  0.5
+                  0.8
                 )}, ${hex2rgba(pantone[3], 0)} 70.71%)`,
                 transition: { duration: 0.5 },
               }}

@@ -50,12 +50,12 @@
 .container {
   height: 100%;
   display: flex;
-  background: linear-gradient(359deg, #1bb552, #1bb552, #000000);
-  background-size: 600% 600%;
+  background: linear-gradient(359deg, #1db954, #1db954, #000000);
+  background-size: 200% 200%;
 
-  -webkit-animation: AnimationName 15s forwards ease;
-  -moz-animation: AnimationName 15s forwards ease;
-  animation: AnimationName 15s forwards ease;
+  -webkit-animation: AnimationName 5s forwards ease;
+  -moz-animation: AnimationName 5s forwards ease;
+  animation: AnimationName 5s forwards ease;
 }
 
 @-webkit-keyframes AnimationName {

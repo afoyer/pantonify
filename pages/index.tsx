@@ -13,7 +13,6 @@ export default function Home() {
   const [session, loading] = useSession();
   const [topSongs, setTopSongs] = useState([]);
   const [reLog, checkSession] = useState(true);
-  const [firstTime, setFirstTime] = useState(false);
   const [pantone, setPantone] = useState([
     "#dddddd",
     "#dddddd",
@@ -37,9 +36,6 @@ export default function Home() {
     Card(setTopSongs, timeRange, checkSession, setPantone);
     setIsLoaded(true);
     //Scroll to view if not the first card
-    if (firstTime && reLog) {
-      ref.current.scrollIntoView();
-    } else setFirstTime(true);
   }, [timeRange]);
   return (
     <>
@@ -126,9 +122,6 @@ export default function Home() {
           {isLoaded && reLog && (
             <motion.div
               className="signed-in"
-              // style={{
-              //   background: `linear-gradient(217deg, rgba(255,0,0,0.8), rgba(255,0,0,0) 70.71%),linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%)`,
-              // }}
               initial={{
                 background: `linear-gradient(180deg, ${hex2rgba(
                   pantone[0],
@@ -150,39 +143,56 @@ export default function Home() {
               animate={{
                 background: `linear-gradient(180deg, ${hex2rgba(
                   pantone[0],
-                  0.8
+                  0.5
                 )}, ${hex2rgba(
                   pantone[1],
                   0
                 )} 70.71%),linear-gradient(120deg, ${hex2rgba(
                   pantone[1],
-                  0.8
+                  0.5
                 )}, ${hex2rgba(
                   pantone[2],
                   0
                 )} 70.71%),linear-gradient(336deg, ${hex2rgba(
                   pantone[2],
-                  0.8
+                  0.5
                 )}, ${hex2rgba(pantone[3], 0)} 70.71%)`,
                 transition: { duration: 0.5 },
               }}
+              // style={{
+              //   background: `linear-gradient(217deg, rgba(255,0,0,0.8), rgba(255,0,0,0) 70.71%),linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%)`,
+              // }}
             >
               <div className="card-display">
                 <AnimatePresence exitBeforeEnter>
                   <motion.div
                     key={"Card" + timeRange}
                     style={{ originX: 0.9, originY: 0.9 }}
-                    initial={{ opacity: 0, y: 20, rotate: -5 }}
+                    // initial={{ opacity: 0, y: 20, rotate: -5 }}
+                    // animate={{
+                    //   opacity: 1,
+                    //   y: 0,
+                    //   rotate: 0,
+                    //   transition: { duration: 0.5, delay: 0.1 },
+                    // }}
+                    exit={{
+                      backgroundColor: "#ECECEA",
+                      opacity: 0,
+                      y: 20,
+                      rotate: -2,
+                      transition: { duration: 0.5 },
+                    }}
+                    initial={{
+                      opacity: 0,
+                      y: 20,
+                      rotate: -2,
+                    }}
                     animate={{
+                      backgroundColor: "#ECECEA",
                       opacity: 1,
                       y: 0,
                       rotate: 0,
-                      transition: { duration: 0.5, delay: 0.1 },
-                    }}
-                    exit={{
-                      opacity: 0,
-                      y: 20,
-                      rotate: -5,
+
                       transition: { duration: 0.5 },
                     }}
                     className="pantone-card"

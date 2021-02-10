@@ -1,16 +1,19 @@
 import { motion } from "framer-motion";
+import { createLogicalOr } from "typescript";
 
 export default function Navigation({
   username,
   signOut,
   setTimeRange,
   timeRange,
+  color,
 }) {
   return (
     <motion.nav
       className="navigation"
       initial={false}
       animate={{
+        backgroundColor: color,
         transition: {
           staggerChildren: 0.5,
         },
@@ -23,17 +26,17 @@ export default function Navigation({
           y: 0,
           transition: { duration: 0.5 },
         }}
+        className="hey"
       >
-        Hello {username}
+        Hey {username.substr(0, username.indexOf(" "))}
       </motion.div>
       <motion.button
-        style={{ boxShadow: "0px 3px 5px #5e5e5e" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.5 } }}
         whileHover={{ backgroundColor: "#b71c1c", color: "#FFFFFF" }}
         className="btn btn-primary"
         onClick={() => {
-          signOut();
+          signOut({ redirect: false });
         }}
       >
         Log Out
@@ -45,13 +48,11 @@ export default function Navigation({
             ? {
                 opacity: 1,
                 backgroundColor: "#80e27e",
-                boxShadow: "0px 3px 5px #5e5e5e",
                 transition: { duration: 0.5 },
               }
             : {
                 opacity: 1,
                 backgroundColor: "#448bdb",
-                boxShadow: "0px 2px 3px #5e5e5e",
                 transition: { duration: 0.5 },
               }
         }
@@ -61,7 +62,7 @@ export default function Navigation({
           setTimeRange("short_term");
         }}
       >
-        4 Weeks
+        1 Month
       </motion.button>
       <motion.button
         initial={{ opacity: 0 }}
@@ -70,13 +71,11 @@ export default function Navigation({
             ? {
                 opacity: 1,
                 backgroundColor: "#4caf50",
-                boxShadow: "0px 2px 3px #5e5e5e",
                 transition: { duration: 0.5 },
               }
             : {
                 opacity: 1,
                 backgroundColor: "#448bdb",
-                boxShadow: "0px 3px 5px #5e5e5e",
                 transition: { duration: 0.5 },
               }
         }
@@ -95,13 +94,11 @@ export default function Navigation({
             ? {
                 opacity: 1,
                 backgroundColor: "#519657",
-                boxShadow: "0px 2px 3px #5e5e5e",
                 transition: { duration: 0.5 },
               }
             : {
                 opacity: 1,
                 backgroundColor: "#448bdb",
-                boxShadow: "0px 3px 5px #5e5e5e",
                 transition: { duration: 0.5 },
               }
         }

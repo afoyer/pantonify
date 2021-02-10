@@ -5,7 +5,8 @@ import FastAverageColor from "fast-average-color";
 export default async function Card(
   topSongSetter: Function,
   timeRange: String,
-  checkSession: Function
+  checkSession: Function,
+  setPantone: Function
 ) {
   const session = await getSession();
   if (session) {
@@ -36,6 +37,11 @@ export default async function Card(
                 pantone: pantone.pantone,
               };
             });
+        })
+      );
+      setPantone(
+        trackArray.map((track) => {
+          return track.imagecolor;
         })
       );
       topSongSetter(trackArray);

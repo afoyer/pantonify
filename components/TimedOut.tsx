@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
+import { signOut } from "next-auth/client";
 
-export default function TimedOut() {
+export default function TimedOut({ signOut }) {
   return (
     <motion.div
+      onTap={signOut}
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,

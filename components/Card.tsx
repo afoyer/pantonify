@@ -41,7 +41,6 @@ export default async function Card(
       );
       setPantone(
         trackArray.map((track) => {
-          console.log(track);
           return track.imagecolor;
         })
       );

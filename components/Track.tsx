@@ -11,7 +11,12 @@ export default function Track({ array }) {
         <div className="track-info">
           <div className="flex-track">
             <div className="bold-title">
-              <h1 className="left-info">{song.artist.toUpperCase()}</h1>
+              <h1
+                className="left-info"
+                style={{ fontSize: 2 - song.artist.length * 0.04 + "vh" }}
+              >
+                {song.artist.toUpperCase()}
+              </h1>
               <h1 className="left-info-sub">{song.pantone.toUpperCase()}</h1>
             </div>
           </div>

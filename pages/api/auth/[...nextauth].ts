@@ -8,6 +8,7 @@ const options = {
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
       scope: "user-top-read",
+      authorizationUrl: `https://accounts.spotify.com/authorize?response_type=code&show_dialog=true`,
     }),
   ],
   callbacks: {

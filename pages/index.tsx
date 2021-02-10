@@ -40,6 +40,7 @@ export default function Home() {
   return (
     <>
       <Head>
+        <html lang="en" />
         <title>PANTONIFY&copy;</title>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -61,7 +62,7 @@ export default function Home() {
                 transition: {
                   type: "tween",
                   ease: "easeOut",
-                  duration: 0.5,
+                  duration: 0.4,
                 },
               }}
             >

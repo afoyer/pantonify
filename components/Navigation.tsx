@@ -13,7 +13,8 @@ export default function Navigation({
       className="navigation"
       initial={false}
       animate={{
-        backgroundColor: "rgba(27, 181, 82, 0.8)",
+        backgroundColor: "#282828",
+        color: "#FEFFFE",
         transition: {
           staggerChildren: 0.5,
         },
@@ -34,7 +35,8 @@ export default function Navigation({
         initial={{ opacity: 0 }}
         animate={{
           opacity: 1,
-          backgroundColor: "#e57373",
+          backgroundColor: "#7f0000",
+          color: "#FEFFFE",
           transition: { duration: 0.5 },
         }}
         whileHover={{ backgroundColor: "#b71c1c", color: "#FFFFFF" }}
@@ -43,7 +45,7 @@ export default function Navigation({
           signOut({ redirect: false });
         }}
       >
-        LOG OUT
+        Log Out
       </motion.button>
       <motion.button
         initial={{ opacity: 0 }}
@@ -51,22 +53,32 @@ export default function Navigation({
           timeRange === "short_term"
             ? {
                 opacity: 1,
-                backgroundColor: "#80e27e",
+                backgroundColor: "#282828",
+                color: "#FEFFFE",
                 transition: { duration: 0.5 },
               }
             : {
                 opacity: 1,
-                backgroundColor: "#448bdb",
+                backgroundColor: "#282828",
+                color: "#898989",
                 transition: { duration: 0.5 },
               }
         }
-        whileHover={{ backgroundColor: "#80e27e" }}
+        whileHover={
+          timeRange === "short_term"
+            ? {}
+            : {
+                backgroundColor: "#80e27e",
+                color: "#FEFFFE",
+                cursor: "pointer",
+              }
+        }
         className="btn btn-primary"
         onClick={() => {
           setTimeRange("short_term");
         }}
       >
-        1 MONTH
+        1 Month
       </motion.button>
       <motion.button
         initial={{ opacity: 0 }}
@@ -74,22 +86,32 @@ export default function Navigation({
           timeRange === "medium_term"
             ? {
                 opacity: 1,
-                backgroundColor: "#4caf50",
+                backgroundColor: "#282828",
+                color: "#FEFFFE",
                 transition: { duration: 0.5 },
               }
             : {
                 opacity: 1,
-                backgroundColor: "#448bdb",
+                backgroundColor: "#282828",
+                color: "#898989",
                 transition: { duration: 0.5 },
               }
         }
-        whileHover={{ backgroundColor: "#4caf50" }}
+        whileHover={
+          timeRange === "medium_term"
+            ? {}
+            : {
+                backgroundColor: "#80e27e",
+                color: "#FEFFFE",
+                cursor: "pointer",
+              }
+        }
         className="btn btn-primary"
         onClick={() => {
           setTimeRange("medium_term");
         }}
       >
-        6 MONTHS
+        6 Months
       </motion.button>
       <motion.button
         initial={{ opacity: 0 }}
@@ -97,22 +119,32 @@ export default function Navigation({
           timeRange === "long_term"
             ? {
                 opacity: 1,
-                backgroundColor: "#519657",
+                backgroundColor: "#282828",
+                color: "#FEFFFE",
                 transition: { duration: 0.5 },
               }
             : {
                 opacity: 1,
-                backgroundColor: "#448bdb",
+                backgroundColor: "#282828",
+                color: "#898989",
                 transition: { duration: 0.5 },
               }
         }
-        whileHover={{ backgroundColor: "#519657" }}
+        whileHover={
+          timeRange === "long_term"
+            ? {}
+            : {
+                backgroundColor: "#80e27e",
+                color: "#FEFFFE",
+                cursor: "pointer",
+              }
+        }
         className="btn btn-primary"
         onClick={() => {
           setTimeRange("long_term");
         }}
       >
-        ALL TIME
+        All Time
       </motion.button>
     </motion.nav>
   );

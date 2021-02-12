@@ -203,13 +203,15 @@ export default function Home() {
                     <div className="title-card">PANTONIFY&copy;</div>
                     <Track array={topSongs} />
                     <footer className="bottom">
-                      <h1>
-                        Made for{" "}
-                        {session.user.name.substr(
-                          0,
-                          session.user.name.indexOf(" ")
-                        )}
-                      </h1>
+                      {session.user.name && (
+                        <h1>
+                          Made for{" "}
+                          {session.user.name.substr(
+                            0,
+                            session.user.name.indexOf(" ")
+                          )}
+                        </h1>
+                      )}
                       <a
                         className="punchhole"
                         href="https://aymericfoyer.com/"

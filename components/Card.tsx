@@ -20,7 +20,6 @@ export default async function Card(
       checkSession(false);
     }
     if (!jsonResponse.items.length) {
-      checkSession(false);
       topSongSetter([
         {
           trackname: "Nothing Found.",

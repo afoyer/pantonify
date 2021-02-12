@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { getSession } from "next-auth/client";
 import FastAverageColor from "fast-average-color";
 
@@ -18,42 +17,21 @@ export default async function Card(
     const jsonResponse = await response.json();
     if (!jsonResponse) {
       checkSession(false);
-    }
-    if (!jsonResponse.items.length) {
-      topSongSetter([
-        {
-          trackname: "Nothing Found.",
-          album: "Nothing Here Either",
-          image: "/error.png",
-          artist: "Who?",
-          imagecolor: "#000000",
-          pantone: "¯\\_(ツ)_/¯",
-        },
-        {
-          trackname: "Nothing Found.",
-          album: "Nothing Here Either",
-          image: "/error.png",
-          artist: "Who?",
-          imagecolor: "#000000",
-          pantone: "¯\\_(ツ)_/¯",
-        },
-        {
-          trackname: "Nothing Found.",
-          album: "Nothing Here Either",
-          image: "/error.png",
-          artist: "Who?",
-          imagecolor: "#000000",
-          pantone: "¯\\_(ツ)_/¯",
-        },
-        {
-          trackname: "Nothing Found.",
-          album: "Nothing Here Either",
-          image: "/error.png",
-          artist: "Who?",
-          imagecolor: "#000000",
-          pantone: "¯\\_(ツ)_/¯",
-        },
-      ]);
+    } else if (!jsonResponse.items.length) {
+      topSongSetter(() => {
+        let array = [];
+        for (let i = 0; i < 4; i++) {
+          array.push({
+            trackname: "",
+            album: "blank",
+            image: "/blank.png",
+            artist: "",
+            imagecolor: "#ECECEA",
+            pantone: "",
+          });
+        }
+        return array;
+      });
     } else {
       const trackArray: Array<any> = await Promise.all(
         jsonResponse.items.map((track) => {
@@ -75,7 +53,18 @@ export default async function Card(
             });
         })
       );
-
+      if (trackArray.length < 4) {
+        for (let i = trackArray.length; i < 4; i++) {
+          trackArray.push({
+            trackname: "",
+            album: "track.album.name",
+            image: "/blank.png",
+            artist: "",
+            imagecolor: "#ECECEA",
+            pantone: "",
+          });
+        }
+      }
       setPantone(
         trackArray.map((track) => {
           return track.imagecolor;

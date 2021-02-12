@@ -16,8 +16,45 @@ export default async function Card(
       { headers: { Authorization: `Bearer ${session.accessToken}` } }
     );
     const jsonResponse = await response.json();
-    if (!jsonResponse.items) {
+    if (!jsonResponse) {
       checkSession(false);
+    }
+    if (!jsonResponse.items.length) {
+      checkSession(false);
+      topSongSetter([
+        {
+          trackname: "Nothing Found.",
+          album: "Nothing Here Either",
+          image: "/error.png",
+          artist: "Who?",
+          imagecolor: "#000000",
+          pantone: "¯\\_(ツ)_/¯",
+        },
+        {
+          trackname: "Nothing Found.",
+          album: "Nothing Here Either",
+          image: "/error.png",
+          artist: "Who?",
+          imagecolor: "#000000",
+          pantone: "¯\\_(ツ)_/¯",
+        },
+        {
+          trackname: "Nothing Found.",
+          album: "Nothing Here Either",
+          image: "/error.png",
+          artist: "Who?",
+          imagecolor: "#000000",
+          pantone: "¯\\_(ツ)_/¯",
+        },
+        {
+          trackname: "Nothing Found.",
+          album: "Nothing Here Either",
+          image: "/error.png",
+          artist: "Who?",
+          imagecolor: "#000000",
+          pantone: "¯\\_(ツ)_/¯",
+        },
+      ]);
     } else {
       const trackArray: Array<any> = await Promise.all(
         jsonResponse.items.map((track) => {
@@ -39,6 +76,7 @@ export default async function Card(
             });
         })
       );
+
       setPantone(
         trackArray.map((track) => {
           return track.imagecolor;

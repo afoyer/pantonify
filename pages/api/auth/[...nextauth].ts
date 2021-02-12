@@ -9,6 +9,14 @@ const options = {
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
       scope: "user-top-read",
       authorizationUrl: `https://accounts.spotify.com/authorize?response_type=code&show_dialog=true`,
+      profile: (profile) => {
+        return {
+          id: profile.id,
+          name: profile.display_name,
+          email: profile.email,
+          image: null,
+        };
+      },
     }),
   ],
   callbacks: {

@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { createLogicalOr } from "typescript";
 
 export default function Navigation({
   username,

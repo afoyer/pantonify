@@ -35,7 +35,7 @@ export default function Home() {
       })
       .then(function (dataUrl) {
         var link = document.createElement("a");
-        link.download = `${timeRange}.jpeg`;
+        link.download = `${timeRange}`;
         link.href = dataUrl;
         link.click();
       })

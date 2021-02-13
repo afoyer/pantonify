@@ -14,24 +14,11 @@ export default async function Card(
       `https://api.spotify.com/v1/me/top/tracks?time_range=${timeRange}&limit=4`,
       { headers: { Authorization: `Bearer ${session.accessToken}` } }
     );
-    const jsonResponse = await response.json();
+    const jsonResponse = await Promise.resolve(response.json());
     if (!jsonResponse) {
       checkSession(false);
-    } else if (!jsonResponse.items.length) {
-      topSongSetter(() => {
-        let array = [];
-        for (let i = 0; i < 4; i++) {
-          array.push({
-            trackname: "",
-            album: "blank",
-            image: "/blank.png",
-            artist: "",
-            imagecolor: "#ECECEA",
-            pantone: "",
-          });
-        }
-        return array;
-      });
+    } else if (jsonResponse.error) {
+      checkSession(false);
     } else {
       const trackArray: Array<any> = await Promise.all(
         jsonResponse.items.map((track) => {
@@ -57,10 +44,10 @@ export default async function Card(
         for (let i = trackArray.length; i < 4; i++) {
           trackArray.push({
             trackname: "",
-            album: "track.album.name",
+            album: "",
             image: "/blank.png",
             artist: "",
-            imagecolor: "#ECECEA",
+            imagecolor: "#d5d5d5",
             pantone: "",
           });
         }

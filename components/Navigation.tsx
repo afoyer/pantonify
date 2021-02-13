@@ -6,6 +6,8 @@ export default function Navigation({
   setTimeRange,
   timeRange,
   color,
+  takeImage,
+  reLog,
 }) {
   return (
     <motion.nav
@@ -34,7 +36,7 @@ export default function Navigation({
         initial={{ opacity: 0 }}
         animate={{
           opacity: 1,
-          backgroundColor: "#7f0000",
+          backgroundColor: "#282828",
           color: "#FEFFFE",
           transition: { duration: 0.5 },
         }}
@@ -44,8 +46,9 @@ export default function Navigation({
           signOut({ redirect: false });
         }}
       >
-        Log Out
+        Exit
       </motion.button>
+
       <motion.button
         initial={{ opacity: 0 }}
         animate={
@@ -145,6 +148,22 @@ export default function Navigation({
       >
         All Time
       </motion.button>
+      {reLog && (
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            backgroundColor: "#1565c0",
+            color: "#FEFFFE",
+            transition: { duration: 0.5 },
+          }}
+          whileHover={{ backgroundColor: "#5e92f3", color: "#FFFFFF" }}
+          className="btn btn-primary download"
+          onClick={takeImage}
+        >
+          Download
+        </motion.button>
+      )}
     </motion.nav>
   );
 }

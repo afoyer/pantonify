@@ -7,6 +7,7 @@ import Card from "../components/Card";
 import Track from "./../components/Track";
 import TimedOut from "../components/TimedOut";
 import Navigation from "../components/Navigation";
+import domtoimage from "dom-to-image";
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -19,6 +20,29 @@ export default function Home() {
     "#dddddd",
     "#dddddd",
   ]);
+  function takeImage() {
+    var node = document.getElementById("SIGNEDIN");
+    var w = node.getBoundingClientRect();
+
+    domtoimage
+      .toJpeg(node, {
+        width: w.width * 2,
+        height: w.height * 2,
+        style: {
+          transform: "scale(2)",
+          "transform-origin": "top left",
+        },
+      })
+      .then(function (dataUrl) {
+        var link = document.createElement("a");
+        link.download = `${timeRange}.jpeg`;
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch(function (error) {
+        console.error("oops, something went wrong!", error);
+      });
+  }
   const [timeRange, setTimeRange] = useState("short_term");
   const hex2rgba = (hex, alpha = 1) => {
     const [r, g, b] = hex.match(/\w\w/g).map((x) => parseInt(x, 16));
@@ -40,7 +64,6 @@ export default function Home() {
   return (
     <>
       <Head>
-        <html lang="en" />
         <title>PANTONIFY&copy;</title>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -117,11 +140,14 @@ export default function Home() {
             setTimeRange={setTimeRange}
             timeRange={timeRange}
             color={hex2rgba(pantone[0], 0.65)}
+            takeImage={takeImage}
+            reLog={reLog}
           />
           {/* CARD */}
 
           {isLoaded && reLog && (
             <motion.div
+              id="SIGNEDIN"
               className="signed-in"
               initial={{
                 background: `linear-gradient(180deg, ${hex2rgba(
@@ -160,22 +186,12 @@ export default function Home() {
                 )}, ${hex2rgba(pantone[3], 0)} 70.71%)`,
                 transition: { duration: 0.5 },
               }}
-              // style={{
-              //   background: `linear-gradient(217deg, rgba(255,0,0,0.8), rgba(255,0,0,0) 70.71%),linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%)`,
-              // }}
             >
               <div className="card-display">
                 <AnimatePresence exitBeforeEnter>
                   <motion.div
                     key={"Card" + timeRange}
                     style={{ originX: 0.9, originY: 0.9 }}
-                    // initial={{ opacity: 0, y: 20, rotate: -5 }}
-                    // animate={{
-                    //   opacity: 1,
-                    //   y: 0,
-                    //   rotate: 0,
-                    //   transition: { duration: 0.5, delay: 0.1 },
-                    // }}
                     exit={{
                       backgroundColor: "#ECECEA",
                       opacity: 0,

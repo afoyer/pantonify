@@ -33,6 +33,11 @@
     font-size: 2.5rem;
   }
 }
+.signincard {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
 .aflogo {
   position: absolute;
   width: 80px;
@@ -40,7 +45,8 @@
   right: 4%;
   @include media("<=1200px") {
     width: 40px;
-
+    bottom: unset;
+    top: 5%;
     right: unset;
     left: 0;
     right: 0;
@@ -48,8 +54,8 @@
   }
 }
 .container {
-  height: 100%;
-  display: flex;
+  position: relative;
+  height: 100vh;
   background: linear-gradient(359deg, #1db954, #1db954, #000000);
   background-size: 200% 200%;
 
@@ -91,7 +97,54 @@
     background-position: 50% 100%;
   }
 }
-
+.feather {
+  position: absolute;
+  height: 50px;
+  margin: 0 auto;
+  bottom: 5%;
+}
+.info {
+  overflow: hidden;
+  position: relative;
+  min-height: 100vh;
+  background-color: #1db954;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+  p {
+    a {
+      color: rgb(3, 105, 145);
+    }
+    font-family: "HelveticaNeueMed", Helvetica, sans-serif;
+    text-align: center;
+    font-size: 1.3rem;
+    margin: 10px 3%;
+    @include media(">=tablet") {
+      margin: 10px 15%;
+    }
+  }
+  img {
+    position: absolute;
+    height: 50%;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    @include media(">=tablet") {
+      top: 62%;
+      left: 50%;
+      height: 55%;
+    }
+    @include media("<=300px") {
+      top: 78%;
+      left: 50%;
+      height: 55%;
+    }
+  }
+}
 .center {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -103,13 +156,7 @@
 
   background-color: white;
 
-  position: relative;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   min-width: 22%;
-  // height: 60vh;
   margin: auto;
   @include media("<=1200px") {
     width: 300px;

@@ -69,8 +69,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="See your true colors with your favorite music!"
+          content="Pantonify: See your true colors with your favorite music!"
         />
+        <meta property="og:title" content="PANTONIFY" />
+        <meta
+          property="og:description"
+          content="Pantonify: See your true colors with your favorite music!"
+        />
+        <meta
+          property="og:image"
+          content="https://repository-images.githubusercontent.com/335487690/cd241b80-6d7c-11eb-8b6f-8f06bd4af5dc"
+        />
+        <meta property="og:url" content="https://pantonify.herokuapp.com/" />
       </Head>
       {/* NOT LOGGED IN */}
       {!session && (

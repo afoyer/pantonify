@@ -32,7 +32,7 @@ export default function Home() {
     var node = document.getElementById("SIGNEDIN");
     var w = node.getBoundingClientRect();
     domtoimage
-      .toJpeg(node, {
+      .toPng(node, {
         bgcolor: "#ffffff",
         width: w.width * 2,
         height: w.height * 2,

@@ -71,10 +71,11 @@ export default function Home() {
           name="description"
           content="Pantonify: See your true colors with your favorite music!"
         />
+        <meta name="keywords" content="Pantonify, Spotify, Top Artists"></meta>
         <meta property="og:title" content="PANTONIFY" />
         <meta
           property="og:description"
-          content="Pantonify: See your true colors with your favorite music!"
+          content="See your true colors with your favorite music!"
         />
         <meta
           property="og:image"

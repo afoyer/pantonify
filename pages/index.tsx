@@ -75,7 +75,7 @@ export default function Home() {
         <meta property="og:title" content="PANTONIFY" />
         <meta
           property="og:description"
-          content="See your true colors with your favorite music!"
+          content="deSee your true colors with your favorite music!"
         />
         <meta
           property="og:image"
@@ -286,12 +286,14 @@ export default function Home() {
                     <div className="title-card">PANTONIFY&copy;</div>
                     <Track array={topSongs} />
                     <footer className="bottom">
-                      {session.user.name && (
+                      {session.user.name.length && (
                         <h1>
                           Made for{" "}
                           {session.user.name.substr(
                             0,
                             session.user.name.indexOf(" ")
+                              ? session.user.name.indexOf(" ")
+                              : session.user.name.length
                           )}
                         </h1>
                       )}

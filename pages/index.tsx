@@ -27,6 +27,10 @@ export default function Home() {
     "#dddddd",
     "#dddddd",
   ]);
+
+  /** Current Date */
+
+  const today = new Date();
   //Image Downloading
   function takeImage() {
     var node = document.getElementById("SIGNEDIN");
@@ -295,6 +299,8 @@ export default function Home() {
                               ? session.user.name.indexOf(" ")
                               : session.user.name.length
                           )}
+                          , {today.getDate()}/{today.getMonth() + 1}/
+                          {today.getFullYear()}
                         </h1>
                       )}
                       <a

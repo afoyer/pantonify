@@ -1,6 +1,13 @@
 import { getSession } from "next-auth/client";
 import FastAverageColor from "fast-average-color";
 
+/**
+ * Fetches user's top songs (depending on time range) from Spotify and get's their album art, average pantone color, and details.
+ * @param topSongSetter state setter for setting all the songs
+ * @param timeRange the time range we will use for the spotify fetch
+ * @param checkSession state setter for setting session
+ * @param setPantone state setter for setting pantone color for all tracks, returns array
+ */
 export default async function Card(
   topSongSetter: Function,
   timeRange: String,

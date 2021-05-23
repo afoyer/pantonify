@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import { signOut } from "next-auth/client";
 
+/**
+ * Small overlay that forces the user to sign out because their tokens are expired.
+ * @param signOut sign out function
+ */
 export default function TimedOut({ signOut }) {
   return (
     <motion.div

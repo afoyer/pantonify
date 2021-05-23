@@ -1,3 +1,8 @@
+/**
+ * Creates a track format with song info, title, and artist to display.
+ * @param array the track array to parse through
+ * @returns
+ */
 export default function Track({ array }) {
   return array.map((song, index) => {
     return (

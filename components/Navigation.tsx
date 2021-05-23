@@ -1,11 +1,18 @@
 import { motion } from "framer-motion";
 
+/**
+ * Navigation component. Handles logging in/out, changing time periods and taking a screenshot of the card.
+ * @param signOut sign out function
+ * @param timeRange setting for which button to highlight based on setTimeRange
+ * @param reLog check state if session is timed out or not
+ * @param takeImage screenshot function
+ * @param setTimeRange setter for time range
+ * @returns the Navigation component
+ */
 export default function Navigation({
-  username,
   signOut,
   setTimeRange,
   timeRange,
-  color,
   takeImage,
   reLog,
 }) {

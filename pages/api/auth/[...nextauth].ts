@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
-import { signIn } from "next-auth/client";
+
+//Next-Auth settings for signing in. Make sure you provide your own client ID and client secret in you .env file.
 
 const options = {
   providers: [
@@ -21,19 +22,6 @@ const options = {
   ],
   callbacks: {
     jwt: async (token, user, account) => {
-      // if (!account) {
-      //   token.accessToken = fetch("https://accounts.spotify.com/api/token", {
-      //     method: "POST",
-      //     body: JSON.stringify({
-      //       grant_type: "refresh_token",
-      //       refresh_token: token.refreshToken,
-      //     }),
-      //     headers: {
-      //       Authorization: `Basic ${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`,
-      //     },
-      //   });
-      //   console.log("new token:" + token.accessToken);
-      // }
       if (account) {
         token.accessToken = account.accessToken;
       }

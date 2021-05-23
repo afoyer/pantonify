@@ -92,6 +92,8 @@ export default function Home() {
           property="og:description"
           content="deSee your true colors with your favorite music!"
         />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta charSet="utf-8" />
         <meta
           property="og:image"
           content="https://repository-images.githubusercontent.com/335487690/cd241b80-6d7c-11eb-8b6f-8f06bd4af5dc"

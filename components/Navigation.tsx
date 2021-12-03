@@ -17,6 +17,7 @@ export default function Navigation({
   takeImage,
   reLog,
 }) {
+  const browser = detect();
   return (
     <motion.nav
       className="navigation"
@@ -156,7 +157,7 @@ export default function Navigation({
       >
         All Time
       </motion.button>
-      {reLog && detect().name !== "safari" && (
+      {reLog && browser.os !== "iOS" && browser.name !== "safari" && (
         <motion.button
           initial={{ opacity: 0 }}
           animate={{

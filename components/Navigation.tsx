@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { detect } from "detect-browser";
 
 /**
  * Navigation component. Handles logging in/out, changing time periods and taking a screenshot of the card.
@@ -155,7 +156,7 @@ export default function Navigation({
       >
         All Time
       </motion.button>
-      {reLog && (
+      {reLog && detect().name !== "safari" && (
         <motion.button
           initial={{ opacity: 0 }}
           animate={{

@@ -8,6 +8,7 @@
     "start": "next start -p $PORT"
   },
   "dependencies": {
+    "detect-browser": "^5.2.1",
     "dom-to-image": "^2.6.0",
     "fast-average-color": "^6.3.0",
     "framer-motion": "^3.2.2-rc.1",

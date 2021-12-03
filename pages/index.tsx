@@ -7,7 +7,7 @@ import Card from "../components/Card";
 import Track from "./../components/Track";
 import TimedOut from "../components/TimedOut";
 import Navigation from "../components/Navigation";
-import domtoimage from "dom-to-image";
+import { toPng } from "html-to-image";
 import CardContainer from "../components/CardContainer";
 import SplashContainer from "../components/SplashContainer";
 import Footer from "../components/Footer";
@@ -42,16 +42,15 @@ export default function Home() {
   function takeImage() {
     var node = document.getElementById("SIGNEDIN");
     var w = node.getBoundingClientRect();
-    domtoimage
-      .toPng(node, {
-        bgcolor: "#ffffff",
-        width: w.width * 2,
-        height: w.height * 2,
-        style: {
-          transform: "scale(2)",
-          "transform-origin": "top left",
-        },
-      })
+    toPng(node, {
+      backgroundColor: "#ffffff",
+      width: w.width * 2,
+      height: w.height * 2,
+      style: {
+        transform: "scale(2)",
+        transformOrigin: "top left",
+      },
+    })
       .then(function (dataUrl) {
         var link = document.createElement("a");
         link.download = `${timeRange}`;
